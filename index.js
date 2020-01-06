@@ -1,5 +1,7 @@
+"use strict";
+
 let sum = 0;
-for (value = 1; value <= 100; value++) {
+for (let value = 1; value <= 100; value++) {
     sum += value;
 }
 
