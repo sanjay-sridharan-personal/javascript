@@ -1,0 +1,19 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "iPod to Android phone communicator",
+  "main": "index.js",
+  "scripts": {
+    "test": "sendMessage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjay-sridharan-personal/javascript.git"
+  },
+  "author": "Sanjay Sridharan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanjay-sridharan-personal/javascript/issues"
+  },
+  "homepage": "https://github.com/sanjay-sridharan-personal/javascript#readme"
+}
