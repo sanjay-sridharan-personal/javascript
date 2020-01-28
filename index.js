@@ -30,7 +30,7 @@ function restApiHandler(request, response) {
                     }
 
                     let pencil = document.getElementById("canvas").getContext('2d');
-                    pencil.fillText(\`Sanjay! Get response: The sum of 1 to 100 is \${sum}.\`, 0, 0);
+                    pencil.fillText(\`Sanjay! Get response: The sum of 1 to 100 is \${sum}.\`, 0, 20);
                 </script>
             </body>
         </html>
