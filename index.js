@@ -13,7 +13,7 @@ function testMessage(element) {
 }
 
 try {
-    const commits = JSON.stringify(github.context.payload.commits, undefined, 4);
+    const commits = github.context.payload.commits;
     commits.forEach((element) => testMessage(element));
 } catch (error) {
     core.setFailed(error.message);
