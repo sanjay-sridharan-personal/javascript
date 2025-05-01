@@ -1,39 +1,13 @@
-"use strict";
+import * as core from "@actions/core";
+import * as github from "@actions/github";
 
-// our dependencies
-const express = require("express");
-const app = express();
-
-// from top level path e.g. localhost:3000, this response will be sent
-app.get("/", restApiHandler);
-
-// set the server to listen on port 3000
-const port = 3000;
-app.listen(port, () => `Listening on port ${port}`);
-
-function restApiHandler(request, response) {
-    // let sum = 0;
-    // for (let value = 1; value <= 100; value++) {
-    //     sum += value;
-    // }
-
-    return response.send(
-        `
-        <!DOCTYPE html>
-        <html lang="en">
-            <canvas id="canvas" width="800" height="800"></canvas>
-            <body>
-                <script>
-                    let sum = 0;
-                    for (let value = 1; value <= 100; value++) {
-                        sum += value;
-                    }
-
-                    let pencil = document.getElementById("canvas").getContext('2d');
-                    pencil.fillText(\`Sanjay! Get response: The sum of 1 to 100 is \${sum}.\`, 0, 20);
-                </script>
-            </body>
-        </html>
-        `
-        );
+try {
+    const nameToGreet = core.getInput("who-to-greet");
+    console.log(`Hello ${nameToGreet}!`);
+    const time = (new Date()).toTimeString();
+    core.setOutput("time", time);
+    const payload = JSON.stringify(github.context.payload, undefined, 4);
+    console.log(`The event payload: ${payload}`);
+} catch (error) {
+    core.setFailed(error.message);
 }
