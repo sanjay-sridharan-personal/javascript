@@ -31877,13 +31877,20 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 
+function testMessage(element) {
+    const commitHeader = "Our convention:";
+    if (element.message.startsWith(commitHeader)) {
+        console.log("Commit message complies with our convention");
+    } else {
+        const error = new Error(`Commit does not start with ${commitHeader}\n${element.message}`);
+        console.log(`ERROR: ${error.message}`);
+        throw error;
+    }
+}
+
 try {
-    const nameToGreet = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("who-to-greet");
-    console.log(`Hello ${nameToGreet}!`);
-    const time = (new Date()).toTimeString();
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("time", time);
-    const payload = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload, undefined, 4);
-    console.log(`The event payload: ${payload}`);
+    const commits = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.commits, undefined, 4);
+    commits.forEach((element) => testMessage(element));
 } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
