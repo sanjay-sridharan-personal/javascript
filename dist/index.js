@@ -31889,7 +31889,9 @@ function testMessage(element) {
 }
 
 try {
-    const commits = JSON.stringify(_actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.commits, undefined, 4);
+    const commits = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.commits;
+    console.log(`Sanjay! Type of commits: ${typeof commits}`);
+    console.log(`Sanjay! ${commits}`);
     commits.forEach((element) => testMessage(element));
 } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
