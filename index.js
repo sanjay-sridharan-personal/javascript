@@ -14,6 +14,8 @@ function testMessage(element) {
 
 try {
     const commits = github.context.payload.commits;
+    console.log(`Sanjay! Type of commits: ${typeof commits}`);
+    console.log(`Sanjay! ${commits}`);
     commits.forEach((element) => testMessage(element));
 } catch (error) {
     core.setFailed(error.message);
