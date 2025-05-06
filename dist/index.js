@@ -31877,20 +31877,9 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 
-function testMessage(element) {
-    const commitHeader = "Our convention:";
-    if (element.message.startsWith(commitHeader)) {
-        console.log("Commit message complies with our convention");
-    } else {
-        const error = new Error(`Commit does not start with ${commitHeader}\n${element.message}`);
-        console.log(`ERROR: ${error.message}`);
-        throw error;
-    }
-}
-
 try {
-    const commits = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.commits;
-    commits.forEach((element) => testMessage(element));
+    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("GH_PAT"));
+    console.log(`Sanjay! octokit = ${octokit}`);
 } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }

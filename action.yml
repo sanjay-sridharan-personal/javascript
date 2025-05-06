@@ -1,5 +1,8 @@
-name: 'commit-linter'
-description: 'Ensure commit message meets convention'
+name: add-needs-review-label
+description: Adds label to PR
+inputs:
+  GH_PAT:
+    required: true
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: node16
+  main: dist/index.js
