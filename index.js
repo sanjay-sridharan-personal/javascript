@@ -8,7 +8,7 @@ try {
     } else {
         console.log(`Sanjay! env.GH_TOKEN is falsy: ${env.GH_TOKEN}`);
     }
-    const octokit = github.getOctokit(process.env.GH_TOKEN);
+    const octokit = github.getOctokit(env.GH_TOKEN);
     console.log(`Sanjay! octokit = ${JSON.stringify(octokit)}`);
 } catch (error) {
     core.setFailed(error.message);
