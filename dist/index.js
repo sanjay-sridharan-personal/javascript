@@ -31847,7 +31847,7 @@ try {
     } else {
         console.log(`Sanjay! env.GH_TOKEN is falsy: ${external_node_process_namespaceObject.env.GH_TOKEN}`);
     }
-    const octokit = github.getOctokit(process.env.GH_TOKEN);
+    const octokit = github.getOctokit(external_node_process_namespaceObject.env.GH_TOKEN);
     console.log(`Sanjay! octokit = ${JSON.stringify(octokit)}`);
 } catch (error) {
     core.setFailed(error.message);
