@@ -4,6 +4,7 @@ inputs:
   GH_PAT:
     description: Pass in GH_PAT
     required: true
+    default: ${{ github.token }}
 runs:
   using: node16
   main: dist/index.js
