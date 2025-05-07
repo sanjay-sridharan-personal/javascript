@@ -31849,17 +31849,6 @@ module.exports = parseParams
 /******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
@@ -31869,19 +31858,24 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-__nccwpck_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(5589);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(1065);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_1__);
+
+// EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
+var core = __nccwpck_require__(5589);
+// EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
+var github = __nccwpck_require__(1065);
+;// CONCATENATED MODULE: external "node:process"
+const external_node_process_namespaceObject = require("node:process");
+var external_node_process_default = /*#__PURE__*/__nccwpck_require__.n(external_node_process_namespaceObject);
+;// CONCATENATED MODULE: ./index.js
+
 
 
 
 try {
-    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("GH_PAT"));
+    const octokit = github.getOctokit((external_node_process_default()).env.GH_TOKEN);
     console.log(`Sanjay! octokit = ${JSON.stringify(octokit)}`);
 } catch (error) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
+    core.setFailed(error.message);
 }
 
 })();
