@@ -1,10 +1,5 @@
 name: add-needs-review-label
 description: Adds label to PR
-inputs:
-  GH_PAT:
-    description: Pass in GH_PAT
-    required: true
-    default: ${{ secrets.GITHUB_TOKEN }}
 runs:
   using: node16
   main: dist/index.js
