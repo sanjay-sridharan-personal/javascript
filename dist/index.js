@@ -31879,7 +31879,7 @@ __nccwpck_require__.r(__webpack_exports__);
 
 try {
     const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("GH_PAT"));
-    console.log(`Sanjay! octokit = ${octokit}`);
+    console.log(`Sanjay! octokit = ${JSON.stringify(octokit)}`);
 } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
