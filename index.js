@@ -4,18 +4,14 @@ import { env } from "node:process";
 
 try {
     const octokit = github.getOctokit(env.GH_TOKEN);
-    // const context = github.context;
-    // console.log(`Sanjay! octokit = ${JSON.stringify(octokit)}`);
+    const context = github.context;
+    console.log(`context = ${JSON.stringify(context)}`);
     const { data: pullRequest } = await octokit.rest.pulls.get({
         owner: 'sanjay-sridharan-personal',
         repo: 'happy-birthday',
-        pull_number: 22,
-        mediaType: {
-          format: 'diff'
-        }
+        pull_number: 22
     });
-
-    console.log(pullRequest);
+    console.log(`pullRequest = ${JSON.stringify(pullRequest)}`);
 } catch (error) {
     core.setFailed(error.message);
 }
