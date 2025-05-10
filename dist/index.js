@@ -19,12 +19,12 @@ __nccwpck_require__.r(__webpack_exports__);
 
 try {
     const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(node_process__WEBPACK_IMPORTED_MODULE_2__.env.GH_TOKEN);
-    const context = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context;
-    console.log(`context = ${JSON.stringify(context)}`);
+    const payload = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload;
+    console.log(`payload = ${JSON.stringify(payload)}`);
     const { data: pullRequest } = await octokit.rest.pulls.get({
-        owner: 'sanjay-sridharan-personal',
-        repo: 'happy-birthday',
-        pull_number: 22
+        owner: `${payload.repository.owner.login}`,
+        repo: `${payload.repository.name}`,
+        pull_number: `${payload.number}`
     });
     console.log(`pullRequest = ${JSON.stringify(pullRequest)}`);
 } catch (error) {
