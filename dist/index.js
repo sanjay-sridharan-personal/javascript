@@ -20,13 +20,12 @@ __nccwpck_require__.r(__webpack_exports__);
 try {
     const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(node_process__WEBPACK_IMPORTED_MODULE_2__.env.GH_TOKEN);
     const payload = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload;
-    console.log(`payload = ${JSON.stringify(payload)}`);
-    const { data: pullRequest } = await octokit.rest.pulls.get({
+    await octokit.rest.issues.addLabels({
         owner: `${payload.repository.owner.login}`,
         repo: `${payload.repository.name}`,
-        pull_number: `${payload.number}`
+        issue_number: `${payload.number}`,
+        labels: [ "Needs Review" ]
     });
-    console.log(`pullRequest = ${JSON.stringify(pullRequest)}`);
 } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
