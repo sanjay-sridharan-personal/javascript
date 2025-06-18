@@ -11,14 +11,11 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(1065);
 /* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var node_process__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(1708);
-/* harmony import */ var node_process__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(node_process__WEBPACK_IMPORTED_MODULE_2__);
-
 
 
 
 try {
-    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(node_process__WEBPACK_IMPORTED_MODULE_2__.env.GH_TOKEN);
+    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_github__WEBPACK_IMPORTED_MODULE_1__.token);
     const payload = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload;
     await octokit.rest.issues.addLabels({
         owner: `${payload.repository.owner.login}`,
@@ -30065,14 +30062,6 @@ module.exports = require("node:crypto");
 
 "use strict";
 module.exports = require("node:events");
-
-/***/ }),
-
-/***/ 1708:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:process");
 
 /***/ }),
 
