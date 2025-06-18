@@ -2,9 +2,7 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 try {
-    core.debug(`Before: authenticate using ${github.token ? 'defined' : 'undefined'} token`);
-    const octokit = github.getOctokit(github.token);
-    core.debug(`After: ${octokit}`);
+    const octokit = github.getOctokit(core.getInput('gh_token'));
     const payload = github.context.payload;
     await octokit.rest.issues.addLabels({
         owner: `${payload.repository.owner.login}`,
