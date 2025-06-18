@@ -3,7 +3,7 @@ import * as github from "@actions/github";
 import { env } from "node:process";
 
 try {
-    const octokit = github.getOctokit(env.GH_TOKEN);
+    const octokit = github.getOctokit(github.token);
     const payload = github.context.payload;
     await octokit.rest.issues.addLabels({
         owner: `${payload.repository.owner.login}`,
