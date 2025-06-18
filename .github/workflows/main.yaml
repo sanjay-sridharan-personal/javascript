@@ -7,6 +7,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: tool3/ncc@master
       with:
+        branch: interview
         github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'index.js'
         ncc_args: '--license, licenses.txt'

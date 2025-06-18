@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import { env } from "node:process";
 
 try {
     const octokit = github.getOctokit(github.token);
