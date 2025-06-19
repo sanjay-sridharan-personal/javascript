@@ -15,9 +15,7 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 try {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(`Before: authenticate using ${_actions_github__WEBPACK_IMPORTED_MODULE_1__.token ? 'defined' : 'undefined'} token`);
-    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_github__WEBPACK_IMPORTED_MODULE_1__.token);
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.debug(`After: ${octokit}`);
+    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
     const payload = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload;
     await octokit.rest.issues.addLabels({
         owner: `${payload.repository.owner.login}`,
