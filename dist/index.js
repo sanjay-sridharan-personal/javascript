@@ -31878,9 +31878,9 @@ __nccwpck_require__.r(__webpack_exports__);
 
 
 try {
-    // const octokit = github.getOctokit(core.getInput('gh_token'));
-    const payload = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload;
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`payload = ${JSON.stringify(payload)}`)
+    const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
+    const prTitle = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.pull_request.title;
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`payload = ${JSON.stringify(prTitle)}`);
 } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error.message);
 }
