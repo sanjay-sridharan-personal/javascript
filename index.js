@@ -6,9 +6,14 @@ try {
     core.info(`payload = ${JSON.stringify(payload)}`);
     const prTitle = github.context.payload.pull_request.title;
     core.info(`prTitle = ${JSON.stringify(prTitle)}`);
-    if (!prTitle.startWith('Jira-')) {
+    const expectedPrefix = 'Jira-';
+    if (!prTitle.startsWith(expectedPrefix)) {
         const octokit = github.getOctokit(core.getInput('gh_token'));
-        octokit.rest.pulls.createReviewComment({
+        octokit.rest.issues.createComment({
+            owner: payload.repository.owner.login,
+            repo: payload.repository.name,
+            issue_number: payload.number,
+            body: `PR title should start with ${expectedPrefix}`
         });
     }
 } catch (error) {
