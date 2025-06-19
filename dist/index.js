@@ -31882,9 +31882,14 @@ try {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`payload = ${JSON.stringify(payload)}`);
     const prTitle = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.payload.pull_request.title;
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`prTitle = ${JSON.stringify(prTitle)}`);
-    if (!prTitle.startWith('Jira-')) {
+    const expectedPrefix = 'Jira-';
+    if (!prTitle.startsWith(expectedPrefix)) {
         const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
-        octokit.rest.pulls.createReviewComment({
+        octokit.rest.issues.createComment({
+            owner: payload.repository.owner.login,
+            repo: payload.repository.name,
+            issue_number: payload.number,
+            body: `PR title should start with ${expectedPrefix}`
         });
     }
 } catch (error) {
