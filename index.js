@@ -2,6 +2,8 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 try {
+    const whodaboss = core.getInput('whodaboss');
+    core.debug(`${whodaboss === 'Sanjay!' ? 'damn straight' : 'boo boo'}`);
     const octokit = github.getOctokit(core.getInput('gh_token'));
     const payload = github.context.payload;
     await octokit.rest.issues.addLabels({

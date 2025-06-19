@@ -5,6 +5,9 @@ inputs:
     description: Workflow repo's GITHUB_TOKEN
     required: false
     default: ${{ github.token }}
+  whodaboss:
+    description: Can I access a repo secret?
+    required: true
 runs:
   using: node16
   main: dist/index.js
