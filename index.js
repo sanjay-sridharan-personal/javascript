@@ -2,16 +2,9 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 try {
-    const whodaboss = core.getInput('whodaboss');
-    core.debug(`${whodaboss === 'Sanjay!' ? 'damn straight' : 'boo boo'}`);
-    const octokit = github.getOctokit(core.getInput('gh_token'));
+    // const octokit = github.getOctokit(core.getInput('gh_token'));
     const payload = github.context.payload;
-    await octokit.rest.issues.addLabels({
-        owner: `${payload.repository.owner.login}`,
-        repo: `${payload.repository.name}`,
-        issue_number: `${payload.number}`,
-        labels: [ 'Needs Review' ]
-    });
+    core.info(`payload = ${JSON.stringify(payload)}`)
 } catch (error) {
     core.setFailed(error.message);
 }
