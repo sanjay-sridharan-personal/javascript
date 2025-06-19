@@ -1,5 +1,5 @@
-name: check-commit-message
-description: Check message meets convention
+name: check-pr-title
+description: Check PR title meets convention
 inputs:
   gh_token:
     description: Workflow repo's GITHUB_TOKEN
