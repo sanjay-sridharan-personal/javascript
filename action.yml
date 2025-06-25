@@ -1,5 +1,5 @@
-name: add-needs-review-label
-description: Adds label to PR
+name: check-pr-title
+description: Check that PR's title meets our conventions
 inputs:
   gh_token:
     description: Invoking repo's GITHUB_TOKEN

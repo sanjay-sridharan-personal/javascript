@@ -13,7 +13,7 @@ function addCommentToPR(comment, issue_number, repo, owner) {
             owner,
             repo,
             issue_number,
-            comment
+            body: comment
         });
     }
     catch (error) {
@@ -25,22 +25,20 @@ function addCommentToPR(comment, issue_number, repo, owner) {
 }
 
 async function getTitleOfPR(number, repo, owner) {
-    core.info(`Called getTitleOfPR(${number}, ${repo}, ${owner})`);
     const retVal = {
-        status: true,
         prTitle: '',
+        status: true,
         error: ''
     };
 
     try {
         const octokit = github.getOctokit(core.getInput('gh_token'));
-        core.info(`octokit = ${JSON.stringify(octokit)}`);
         const pr = await octokit.rest.pulls.get({
             owner,
             repo,
             pull_number: number
         });
-        core.info(`pr = ${JSON.stringify(pr)}`);
+        retVal.prTitle = pr.data.title;
     }
     catch (error) {
         retVal.status = false;
@@ -51,4 +49,17 @@ async function getTitleOfPR(number, repo, owner) {
 }
 
 const {owner, repo, number} = github.context.issue;
-await getTitleOfPR(number, repo, owner);
+const {prTitle, status, error} = await getTitleOfPR(number, repo, owner);
+const expectedPrefix = 'Jira-';
+if (status) {
+    if (!prTitle.startsWith(expectedPrefix)) {
+        const {status, error} = addCommentToPR(
+            `Expected title to start with "${expectedPrefix}", however:\n${prTitle}`,
+            number, repo, owner);
+        if (!status) {
+            core.setFailed(error);
+        }
+    }
+} else {
+    core.setFailed(error);
+}
