@@ -21,12 +21,12 @@ function addCommentToPR(comment, issue_number, repo, owner) {
     };
 
     try {
-        const octokit = github.getOctokit(core.getInput('gh_token'));
+        const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
         octokit.rest.issues.createComment({
             owner,
             repo,
             issue_number,
-            comment
+            body: comment
         });
     }
     catch (error) {
@@ -38,22 +38,20 @@ function addCommentToPR(comment, issue_number, repo, owner) {
 }
 
 async function getTitleOfPR(number, repo, owner) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Called getTitleOfPR(${number}, ${repo}, ${owner})`);
     const retVal = {
-        status: true,
         prTitle: '',
+        status: true,
         error: ''
     };
 
     try {
         const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`octokit = ${JSON.stringify(octokit)}`);
         const pr = await octokit.rest.pulls.get({
             owner,
             repo,
             pull_number: number
         });
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`pr = ${JSON.stringify(pr)}`);
+        retVal.prTitle = pr.data.title;
     }
     catch (error) {
         retVal.status = false;
@@ -64,7 +62,20 @@ async function getTitleOfPR(number, repo, owner) {
 }
 
 const {owner, repo, number} = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.issue;
-await getTitleOfPR(number, repo, owner);
+const {prTitle, status, error} = await getTitleOfPR(number, repo, owner);
+const expectedPrefix = 'Jira-';
+if (status) {
+    if (!prTitle.startsWith(expectedPrefix)) {
+        const {status, error} = addCommentToPR(
+            `Expected title to start with "${expectedPrefix}", however:\n${prTitle}`,
+            number, repo, owner);
+        if (!status) {
+            _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error);
+        }
+    }
+} else {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error);
+}
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
