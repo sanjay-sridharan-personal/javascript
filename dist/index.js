@@ -31909,7 +31909,7 @@ function getTitleOfPR(number, repo, owner) {
     };
 
     try {
-        const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
+        const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`octokit = ${JSON.stringify(octokit)}`);
         const pr = octokit.rest.pulls.get({
             owner,
