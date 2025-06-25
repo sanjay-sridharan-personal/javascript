@@ -24,7 +24,7 @@ function addCommentToPR(comment, issue_number, repo, owner) {
     return retVal;
 }
 
-function getTitleOfPR(number, repo, owner) {
+async function getTitleOfPR(number, repo, owner) {
     core.info(`Called getTitleOfPR(${number}, ${repo}, ${owner})`);
     const retVal = {
         status: true,
@@ -35,7 +35,7 @@ function getTitleOfPR(number, repo, owner) {
     try {
         const octokit = github.getOctokit(core.getInput('gh_token'));
         core.info(`octokit = ${JSON.stringify(octokit)}`);
-        const pr = octokit.rest.pulls.get({
+        const pr = await octokit.rest.pulls.get({
             owner,
             repo,
             pull_number: number
@@ -51,4 +51,4 @@ function getTitleOfPR(number, repo, owner) {
 }
 
 const {owner, repo, number} = github.context.issue;
-getTitleOfPR(number, repo, owner);
+await getTitleOfPR(number, repo, owner);
