@@ -24,8 +24,8 @@ function addCommentToPR(comment, issue_number, repo, owner) {
     return retVal;
 }
 
-function getTitleOfPR(issue_number, repo, owner) {
-    core.info(`Called getTitleOfPR(${issue_number}, ${repo}, ${owner})`);
+function getTitleOfPR(number, repo, owner) {
+    core.info(`Called getTitleOfPR(${number}, ${repo}, ${owner})`);
     const retVal = {
         status: true,
         prTitle: '',
@@ -33,12 +33,12 @@ function getTitleOfPR(issue_number, repo, owner) {
     };
 
     try {
-        const octokit = github.getOctokit(core.getInput('gh_token'));
+        const octokit = new github.getOctokit(core.getInput('gh_token'));
         core.info(`octokit = ${JSON.stringify(octokit)}`);
         const pr = octokit.rest.pulls.get({
             owner,
             repo,
-            issue_number
+            pull_number: number
         });
         core.info(`pr = ${JSON.stringify(pr)}`);
     }
