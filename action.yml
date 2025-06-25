@@ -1,5 +1,10 @@
 name: add-needs-review-label
 description: Adds label to PR
+inputs:
+  gh_token:
+    description: Invoking repo's GITHUB_TOKEN
+    required: false
+    default: ${{ github.token }}
 runs:
   using: node16
   main: dist/index.js
