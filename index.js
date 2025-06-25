@@ -33,7 +33,7 @@ function getTitleOfPR(number, repo, owner) {
     };
 
     try {
-        const octokit = new github.getOctokit(core.getInput('gh_token'));
+        const octokit = github.getOctokit(core.getInput('gh_token'));
         core.info(`octokit = ${JSON.stringify(octokit)}`);
         const pr = octokit.rest.pulls.get({
             owner,
