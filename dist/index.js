@@ -31900,8 +31900,8 @@ function addCommentToPR(comment, issue_number, repo, owner) {
     return retVal;
 }
 
-function getTitleOfPR(issue_number, repo, owner) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Called getTitleOfPR(${issue_number}, ${repo}, ${owner})`);
+function getTitleOfPR(number, repo, owner) {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`Called getTitleOfPR(${number}, ${repo}, ${owner})`);
     const retVal = {
         status: true,
         prTitle: '',
@@ -31909,12 +31909,12 @@ function getTitleOfPR(issue_number, repo, owner) {
     };
 
     try {
-        const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
+        const octokit = new _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('gh_token'));
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`octokit = ${JSON.stringify(octokit)}`);
         const pr = octokit.rest.pulls.get({
             owner,
             repo,
-            issue_number
+            pull_number: number
         });
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.info(`pr = ${JSON.stringify(pr)}`);
     }
